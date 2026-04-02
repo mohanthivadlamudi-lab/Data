@@ -1,0 +1,33 @@
+#include <stdio.h>
+
+int graph[10][10], visited[10], queue[10], n;
+
+void bfs(int start) {
+    int front = 0, rear = 0;
+
+    queue[rear++] = start;
+    visited[start] = 1;
+
+    while (front < rear) {
+        int v = queue[front++];
+        printf("%d ", v);
+
+        for (int i = 0; i < n; i++) {
+            if (graph[v][i] && !visited[i]) {
+                queue[rear++] = i;
+                visited[i] = 1;
+            }
+        }
+    }
+}
+
+int main() {
+    scanf("%d", &n);
+
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++)
+            scanf("%d", &graph[i][j]);
+
+    bfs(0); // start from node 0
+    return 0;
+}
