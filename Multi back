@@ -1,0 +1,26 @@
+#include <stdio.h>
+#define INF 9999
+
+int main() {
+    int cost[4][4] = {
+        {0, 2, 1, 0},
+        {0, 0, 3, 4},
+        {0, 0, 0, 2},
+        {0, 0, 0, 0}
+    };
+
+    int dist[4] = {INF, INF, INF, 0};
+    int i, j;
+
+    for(i = 3; i >= 0; i--) {
+        for(j = 0; j < 4; j++) {
+            if(cost[i][j] != 0) {
+                if(dist[i] > cost[i][j] + dist[j]) {
+                    dist[i] = cost[i][j] + dist[j];
+                }
+            }
+        }
+    }
+
+    printf("Minimum cost: %d", dist[0]);
+}
